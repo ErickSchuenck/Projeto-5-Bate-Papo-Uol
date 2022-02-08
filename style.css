@@ -205,7 +205,7 @@ footer{
 .gray_screen{
     display: none;
     position: fixed;
-    right: 250px;
+    right: 0px;
     top: 0px;
     height: 100%;
     width: 100%;
