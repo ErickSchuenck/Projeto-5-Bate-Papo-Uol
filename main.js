@@ -12,4 +12,5 @@ function hide_lock_screen(){
     */
 
     document.querySelector('.lock_screen').style.display = 'none';
+    document.querySelector('.load_screen').style.display = 'block';
 }
