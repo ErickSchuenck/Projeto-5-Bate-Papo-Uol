@@ -177,7 +177,7 @@ footer{
 .sidebar_button:hover{
     transform: scale(1.03);
     transition: transform .2s;
-    background-color: #eceaea;
+    background-color: rgb(248, 219, 209);
 }
 .close_button{
     background: none;
@@ -201,6 +201,11 @@ footer{
 .user_logo ion-icon{
     cursor: pointer;
     font-size: 50px;
+}
+.user_logo ion-icon:hover{
+    transform: scale(1.1);
+    transition: transform 1s;
+    color: orangered;
 }
 .gray_screen{
     display: none;
