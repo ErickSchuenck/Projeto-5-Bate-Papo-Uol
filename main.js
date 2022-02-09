@@ -35,5 +35,7 @@ function hide_gray_screen(){
 }
 function send_message(){
     let my_message = document.getElementById("my_message").value;
+    if(my_message === ""){return}
     alert(my_message);
+    document.getElementById('my_message').value = "";
 }
