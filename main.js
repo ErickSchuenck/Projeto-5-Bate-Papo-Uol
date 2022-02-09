@@ -2,7 +2,7 @@ function hide_lock_screen(){
     //abaixo eu salvo em uma varíavel o nome do usuário, porém não consegui refatorar //
 
     let my_name = document.getElementById("my_name").value;
-    alert('Hello ' + my_name);
+    console.log('Hello ' + my_name);
 
     // O código abaixo faz a tela inicial (lockscreen) desaparecer//
     document.querySelector('.lock_screen').style.display = 'none';
@@ -32,4 +32,8 @@ function display_gray_screen(){
 }
 function hide_gray_screen(){
     document.querySelector('.gray_screen').style.display = 'none';
+}
+function send_message(){
+    let my_message = document.getElementById("my_message").value;
+    alert(my_message);
 }

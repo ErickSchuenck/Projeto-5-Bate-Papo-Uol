@@ -110,6 +110,14 @@ footer{
     display: flex;
     justify-content: space-between;
 }
+footer input{
+    margin-left: 20px;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    color: black;
+    border: none;
+}
 .chat_screen{
     background-color: #f3f3f3;
     display: none;
@@ -150,6 +158,7 @@ footer{
     height: 50px;
 }
 .chevron ion-icon{
+    cursor: pointer;
     width: 100%;
     height: 100%;
 }
