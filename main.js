@@ -1,7 +1,9 @@
+let my_name;
+let main = document.querySelector('.chat_container');
 function hide_lock_screen(){
     //abaixo eu salvo em uma varíavel o nome do usuário, porém não consegui refatorar //
 
-    let my_name = document.getElementById("my_name").value;
+    my_name = document.getElementById("my_name").value;
     console.log('Hello ' + my_name);
 
     // O código abaixo faz a tela inicial (lockscreen) desaparecer//
@@ -10,8 +12,8 @@ function hide_lock_screen(){
 }
 function show_loading(){
     document.querySelector('.load_screen').style.display = 'block';
-    setTimeout(hide_loading, 3000);
-    setTimeout(show_chat_screen, 3000);
+    setTimeout(hide_loading, 300);
+    setTimeout(show_chat_screen, 300);
 }
 function hide_loading(){
     document.querySelector('.load_screen').style.display = 'none';
@@ -36,6 +38,7 @@ function hide_gray_screen(){
 function send_message(){
     let my_message = document.getElementById("my_message").value;
     if(my_message === ""){return}
-    alert(my_message);
+    main.innerHTML = main.innerHTML + `
+    <div class = 'talk_baloon'>${my_name} disse: ${my_message}</div>`
     document.getElementById('my_message').value = "";
 }
