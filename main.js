@@ -50,3 +50,8 @@ function return_login_screen(){
     my_name = "";
     window.location.reload();
 }
+document.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        send_message();
+    }
+})
