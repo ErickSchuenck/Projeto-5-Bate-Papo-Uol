@@ -8,12 +8,37 @@ function get_messages(){
     axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
         .then(extract_data)
         .then(generate_new_messages)
-        .then(update_messages);
+        .then(update_messages)
+        .then(get_participants);
 }
 function update_messages(data){
     console.log('update messages!')
     setTimeout(get_messages,4000)
 }
+
+function get_participants(){
+    axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
+    .then(display_participants);
+}
+function display_participants(participantsData){
+    console.log ('333')
+    let user_list = document.querySelector('.user_list')
+    user_list.innerHTML = ''
+    for(let j = 0; j < participantsData.data.length; j++){
+        user_list.innerHTML = user_list.innerHTML + 
+        `
+        <button class="sidebar_button">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <p>${participantsData.data[j].name}</p>
+                <div class="confirm">
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </div>
+              </button>
+        `
+    }
+}
+
+
 function extract_data(apiMessages){
     console.log(apiMessages.data)
     return apiMessages.data;
