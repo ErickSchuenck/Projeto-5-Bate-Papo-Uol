@@ -8,7 +8,6 @@ function get_messages(){
         .then(extract_data)
         .then(generate_new_messages)
         .then(update_messages)
-        .then(get_participants);
 }
 function update_messages(data){
     console.log('update messages!')
@@ -29,7 +28,7 @@ function display_participants(participantsData){
         <button class="sidebar_button" onclick= "select_user(this)">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <p>${participantsData.data[j].name}</p>
-                <div class="confirm">
+                <div class="confirm hidden">
                   <ion-icon name="checkmark-outline"></ion-icon>
                 </div>
               </button>
@@ -38,7 +37,7 @@ function display_participants(participantsData){
 }
 function select_user(e){
     console.log('555');
-    e.querySelector(".confirm ion-icon").classList.toggle("hidden");
+    e.querySelector(".confirm").classList.toggle("hidden");
 }
 function extract_data(apiMessages){
     console.log(apiMessages.data)
@@ -112,6 +111,7 @@ function hide_chat_screen(){
 function open_side_menu(){
     document.querySelector('.sidebar').style.right = '0px';
     display_gray_screen();
+    get_participants();
 }
 function close_side_menu(){
     document.querySelector('.sidebar').style.right = '-250px';
