@@ -25,19 +25,27 @@ function display_participants(participantsData){
     for(let j = 0; j < participantsData.data.length; j++){
         user_list.innerHTML = user_list.innerHTML + 
         `
-        <button class="sidebar_button" onclick= "select_user(this)">
+        <button class="sidebar_button" onclick= "unselect_all(), select_user(this)">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <p>${participantsData.data[j].name}</p>
                 <div class="confirm hidden">
                   <ion-icon name="checkmark-outline"></ion-icon>
                 </div>
-              </button>
+        </button>
         `
     }
 }
 function select_user(e){
-    console.log('555');
+    console.log('select this')
     e.querySelector(".confirm").classList.toggle("hidden");
+}
+function unselect_all(){
+    console.log('unselect all')
+    let confirm_array = document.querySelectorAll(".confirm")
+    console.log(confirm_array);
+    for (let k=0; k<confirm_array.lenght - 1; k++){
+        confirm_array[k].classList.add(hidden)
+    };
 }
 function extract_data(apiMessages){
     console.log(apiMessages.data)
@@ -68,6 +76,7 @@ function send_message(){
     if(my_message === ""){
         return
     };
+
     const text = {
         from: my_name,
         to: 'Todos',

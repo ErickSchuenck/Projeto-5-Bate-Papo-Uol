@@ -134,6 +134,7 @@ footer input{
     background-color: #ffffff;
     z-index: 11;
     transition: right 0.4s ease;
+    overflow-y: auto;
 }
 .sidebar_button ion-icon {
     margin-left: 10px;
