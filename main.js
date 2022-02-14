@@ -24,8 +24,8 @@ function generate_new_messages(data){
         new_message(data[i].type,data[i].time,data[i].from,data[i].to,data[i].text);
     } 
 
-    // const baloon_array = document.querySelectorAll('.talk_baloon');
-    // baloon_array[baloon_array.length-1].scrollIntoView();
+    const messages_array = document.querySelectorAll('.talk_baloon');
+    messages_array[messages_array.length-1].scrollIntoView();
 
     let displayed_messages = document.querySelector('.chat_container');
     displayed_messages.innerHTML += messages;
@@ -60,10 +60,6 @@ function status_signal(){
     axios.post("https://mock-api.driven.com.br/api/v4/uol/status",name);
     console.log('you are still online...')
 }
-// function new_message(msg) {
-//     let {from: user_name, text: user_message} = msg;
-//     return `<div class="talk_baloon"><span>${user_name}</span> para <span>TODOS </span>: ${user_message}</div>`;
-// }
 function new_message(type,time,from,to,text) {
     chat_container.innerHTML = chat_container.innerHTML + 
     `<div class="talk_baloon ${type}"><span><span class="time">(${time})</span> <span class="strong">${from}</span> para <span class="strong">${to}</span>: ${text}</span></div>`;
