@@ -225,8 +225,8 @@ footer input{
     background-color: rgba(0, 0, 0, 0.6);
 }
 .chat_container{
-    margin: 90px 0;
-    height: 100%;
+    margin: 90px 0 200px 0;
+    height: calc(100% - 180px);
     width: 100%;
     overflow: auto;
 }
@@ -240,4 +240,16 @@ footer input{
     display: flex;
     align-items: center;
     padding: 20px;
+}
+.time{
+    color: grey;
+}
+.strong{
+    font-weight: bold;
+}
+.status{
+    background-color: #dcdcdc;
+}
+.private_message{
+    background-color: #ffdede;
 }

@@ -1,33 +1,72 @@
 let my_name;
 let main = document.querySelector('.chat_container');
+let chat_container = document.querySelector('.chat_container')
 
-let data = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
-    .then(extract_data)
-    .then(generate_new_messages);
+function get_messages(){
+    chat_container.innerHTML = ""
+    console.log('222')
+    axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
+        .then(extract_data)
+        .then(generate_new_messages)
+        .then(update_messages);
+}
+function update_messages(data){
+    console.log('update messages!')
+    setTimeout(get_messages,4000)
+}
 function extract_data(apiMessages){
     console.log(apiMessages.data)
     return apiMessages.data;
 }
 function generate_new_messages(data){
     let messages = "";
-    for(let i = 0; i < data.length; i++){
-        messages += new_message(data[i]);
+    for(let i = 0; i < 100; i++){
+        new_message(data[i].type,data[i].time,data[i].from,data[i].to,data[i].text);
     } 
+
+    // const baloon_array = document.querySelectorAll('.talk_baloon');
+    // baloon_array[baloon_array.length-1].scrollIntoView();
+
     let displayed_messages = document.querySelector('.chat_container');
     displayed_messages.innerHTML += messages;
 }
 function entrance_signal(){
+    console.log("111")
     const dados = {name: my_name};
     axios.post("https://mock-api.driven.com.br/api/v4/uol/participants",dados)
-    setInterval(status_signal, 5000); 
+        .then(get_messages);
+    setInterval(status_signal, 5000);
+}
+function send_message(){
+    let my_message = document.getElementById("my_message").value;
+    if(my_message === ""){
+        return
+    };
+    const text = {
+        from: my_name,
+        to: 'Todos',
+        text: my_message,
+        type: 'message'
+    };
+    axios.post("https://mock-api.driven.com.br/api/v4/uol/messages",text);
+    document.getElementById('my_message').value = "";
+}
+function show_chat_screen(){
+    document.querySelector('.chat_screen').style.display = 'block';
+    entrance_signal(); 
 }
 function status_signal(){
-    const dados = {name: my_name};
-    axios.post("https://mock-api.driven.com.br/api/v4/uol/status",dados);
+    const name = {name: my_name};
+    axios.post("https://mock-api.driven.com.br/api/v4/uol/status",name);
+    console.log('you are still online...')
 }
-function new_message(msg) {
-    let {from: user_name, text: user_message} = msg;
-    return `<div class="talk_baloon"><span>${user_name}</span> para <span>TODOS </span>: ${user_message}</div>`;
+// function new_message(msg) {
+//     let {from: user_name, text: user_message} = msg;
+//     return `<div class="talk_baloon"><span>${user_name}</span> para <span>TODOS </span>: ${user_message}</div>`;
+// }
+function new_message(type,time,from,to,text) {
+    chat_container.innerHTML = chat_container.innerHTML + 
+    `<div class="talk_baloon ${type}"><span><span class="time">(${time})</span> <span class="strong">${from}</span> para <span class="strong">${to}</span>: ${text}</span></div>`;
 }
 function hide_lock_screen(){
     my_name = document.getElementById("my_name").value;
@@ -43,10 +82,6 @@ function show_loading(){
 }
 function hide_loading(){
     document.querySelector('.load_screen').style.display = 'none';
-}
-function show_chat_screen(){
-    document.querySelector('.chat_screen').style.display = 'block';
-    entrance_signal(); 
 }
 function hide_chat_screen(){
     document.querySelector('.chat_screen').style.display = 'none';
@@ -65,14 +100,6 @@ function display_gray_screen(){
 function hide_gray_screen(){
     document.querySelector('.gray_screen').style.display = 'none';
 }
-/*
-function send_message(){
-    let my_message = document.getElementById("my_message").value;
-    if(my_message === ""){return}
-    main.innerHTML = main.innerHTML + `
-    <div class = 'talk_baloon'>${my_name} disse: ${my_message}</div>`
-    document.getElementById('my_message').value = "";
-} */
 function return_login_screen(){
     my_name = "";
     window.location.reload();
@@ -82,9 +109,3 @@ document.addEventListener("keypress", function(e){
         send_message();
     }
 })
-/*
-function entrance_signal(){
-    main.innerHTML = main.innerHTML + `
-    <div class = 'talk_baloon'>${my_name} entrou na sala</div>`
-}
-*/
