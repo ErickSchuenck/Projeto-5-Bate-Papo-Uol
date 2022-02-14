@@ -148,7 +148,9 @@ footer input{
 .confirm ion-icon {
     color: green;
 }
-  
+.hidden {
+    display: none;
+}
 .chevron {
     margin-top: 17px;
     margin-right: 17px;

@@ -26,7 +26,7 @@ function display_participants(participantsData){
     for(let j = 0; j < participantsData.data.length; j++){
         user_list.innerHTML = user_list.innerHTML + 
         `
-        <button class="sidebar_button">
+        <button class="sidebar_button" onclick= "select_user(this)">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <p>${participantsData.data[j].name}</p>
                 <div class="confirm">
@@ -36,8 +36,10 @@ function display_participants(participantsData){
         `
     }
 }
-
-
+function select_user(e){
+    console.log('555');
+    e.querySelector(".confirm ion-icon").classList.toggle("hidden");
+}
 function extract_data(apiMessages){
     console.log(apiMessages.data)
     return apiMessages.data;
