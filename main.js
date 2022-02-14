@@ -3,7 +3,6 @@ let main = document.querySelector('.chat_container');
 let chat_container = document.querySelector('.chat_container')
 
 function get_messages(){
-    chat_container.innerHTML = ""
     console.log('222')
     axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
         .then(extract_data)
@@ -44,6 +43,7 @@ function extract_data(apiMessages){
     return apiMessages.data;
 }
 function generate_new_messages(data){
+    chat_container.innerHTML = ""
     let messages = "";
     for(let i = 0; i < 100; i++){
         new_message(data[i].type,data[i].time,data[i].from,data[i].to,data[i].text);
